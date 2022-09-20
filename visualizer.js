@@ -23,18 +23,25 @@ function main() {
     }
     
     const microphone = new Microphone();
+    let bars = [];
+    let barWidth = canvas.width/256;
     function createBars(){
         for(let i = 0; i < 256; i++) {
-            BroadcastChannel.push(new Bar(i, 0, 10, 100, 'gold'));
+            let color = 'hsl('+ i * 2 +', 100%, 50%)';
+           bars.push(new Bar(i * barWidth, canvas.height/2, 1, 20, color));
         }
     }
 
+    createBars();
+
     function animate(){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+        bars.forEach(function(bar){
+            bar.draw(ctx);
+        })
         requestAnimationFrame(animate);
     }
-    createBars();
+    
     animate();
 }
 
