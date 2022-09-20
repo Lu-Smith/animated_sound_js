@@ -14,7 +14,7 @@ function main() {
         }
         update(micInput){
            //this.height = micInput;
-
+           //this.x++;
         }
         draw(context){
             context.fillStyle = this.color;
