@@ -22,13 +22,19 @@ function main() {
         }
     }
     
-    const bar1 = new Bar(10, 10, 100, 200, 'blue');
+    const microphone = new Microphone();
+    function createBars(){
+        for(let i = 0; i < 256; i++) {
+            BroadcastChannel.push(new Bar(i, 0, 10, 100, 'gold'));
+        }
+    }
+
     function animate(){
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        bar1.draw(ctx);
+
         requestAnimationFrame(animate);
     }
-    
+    createBars();
     animate();
 }
 
