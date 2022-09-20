@@ -10,10 +10,11 @@ class Microphone {
             this.dataArray = new Uint8Array(bufferLength);
             this.microphone.connect(this.analyser);
             this.initialized = true;
-        }).bind(this).catch(function(error){
+        }.bind(this)).catch(function(error){
             alert(error);
         })
     }
 }
 
 const microphone = new Microphone();
+console.log(microphone);
