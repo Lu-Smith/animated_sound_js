@@ -13,8 +13,7 @@ function main() {
            this.color = color;
         }
         update(micInput){
-           //this.height = micInput;
-           //this.x++;
+           this.height = micInput;
         }
         draw(context){
             context.fillStyle = this.color;
@@ -35,10 +34,15 @@ function main() {
     createBars();
 
     function animate(){
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        bars.forEach(function(bar){
-            bar.draw(ctx);
-        })
+        if (microphone.initialized){
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const sammples = microphone.getSamples();
+            bars.forEach(function(bar){
+                bar.update(1);
+                bar.draw(ctx);
+    
+            })
+        }
         requestAnimationFrame(animate);
     }
     
