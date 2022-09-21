@@ -31,4 +31,5 @@ class Microphone {
     }
 }
 
+const fftSize = 512;
 const microphone = new Microphone();

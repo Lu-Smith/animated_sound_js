@@ -37,11 +37,12 @@ function main() {
         }
     }
     
-    const microphone = new Microphone();
+    const fftSize = 512;
+    const microphone = new Microphone(fftSize);
     let bars = [];
-    let barWidth = canvas.width/256;
+    let barWidth = canvas.width/fftSize/2;
     function createBars(){
-        for(let i = 0; i < 256; i++) {
+        for(let i = 0; i < fftSize/2; i++) {
             let color = 'hsl('+ i * 2 +', 100%, 50%)';
            bars.push(new Bar(0, i * 2, 5, 20, color, i));
         }
