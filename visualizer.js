@@ -37,8 +37,8 @@ function main() {
         if (microphone.initialized){
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             const sammples = microphone.getSamples();
-            bars.forEach(function(bar){
-                bar.update(1);
+            bars.forEach(function(bar, i){
+                bar.update(i);
                 bar.draw(ctx);
     
             })
