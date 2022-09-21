@@ -22,17 +22,22 @@ function main() {
            }
            
         }
-        draw(context, volume){
+        draw(context, softVolume){
             context.strokeStyle = this.color;
             context.save();
             context.translate(0, 0);
             context.rotate(this.index * 0.03);
-            context.scale(1 + volume * 0.2, 1 + volume * 0.2);
+            context.scale(1 + softVolume * 0.2, 1 + softVolume * 0.2);
             context.beginPath();
-            context.moveTo(this.x, this.y);
-            context.lineTo(this.y/2, this.height);
+            //context.moveTo(this.x, this.y);
+            //context.lineTo(this.y/2, this.height);
+            context.bezierCurveTo(100, 100, this.height, this.height, this.x, this.y);
             context.stroke();
-            context.strokeRect(this.y, this.height , this.height/2, 5);
+            context.rotate(this.index * 0.1);
+            context.beginPath();
+            //context.strokeRect(this.y + this.index * 1.5, this.height , this.height/2, 5);
+            context.arc(this.x + this.index * 2.5, this.y, this.height * 0.5, 0, Math.PI * 2);
+            context.stroke();
             context.restore();
         }
     }
@@ -50,6 +55,7 @@ function main() {
 
     createBars();
     let angle = 0;
+    let softVolume = 0;
 
     function animate(){
         if (microphone.initialized){
@@ -66,6 +72,7 @@ function main() {
     
             });
             ctx.restore();
+            softVolume = softVolume * 0.9 + volume * 0.1;
         }
         requestAnimationFrame(animate);
     }
